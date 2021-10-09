@@ -1,7 +1,7 @@
 'use strict';
 
-const Goodcount = require('../models/goodcount');
-Goodcount.sync();
+const grasscount = require('../models/grasscount');
+grasscount.sync();
 
 const fs = require('fs');
 const joinMessagesFileName = './join_messages.json';
@@ -53,20 +53,20 @@ module.exports = robot => {
             name: user ? user.name : '',
             realName: user ? user.real_name : '',
             displayName: user ? user.slack.profile.display_name : '',
-            goodcount: 0
+            grasscount: 0
           }
-        }).spread((goodcount, isCreated) => {
-          goodcount
-            .increment('goodcount', { where: { userId: userId } })
+        }).spread((grasscount, isCreated) => {
+          grasscount
+            .increment('grasscount', { where: { userId: userId } })
             .then(() => {
-              const newGoodcount = goodcount.goodcount;
+              const newGrasscount = grasscount.grasscount;
               if (
-                newGoodcount === 10 ||
-                newGoodcount === 50 ||
-                newGoodcount % 100 === 0
+                newGrasscount === 10 ||
+                newGrasscount === 50 ||
+                newGrasscount % 100 === 0
               ) {
                 res.send(
-                  `<@${userId}>ちゃん、すごーい！記念すべき ${newGoodcount} 回目のいいねだよ！おめでとー！`
+                  `<@${userId}>ちゃん、すごーい！記念すべき ${newGrasscount} 回目のいいねだよ！おめでとー！`
                 );
               }
 
@@ -89,17 +89,17 @@ module.exports = robot => {
       username = user.name;
     }
 
-    Goodcount.findOrCreate({
+    Grasscount.findOrCreate({
       where: { userId: user.id },
       defaults: {
         userId: user.id,
         name: user.name,
         realName: user.real_name,
         displayName: user.profile.display_name,
-        goodcount: 0
+        grasscount: 0
       }
-    }).spread((goodcount, isCreated) => {
-      const message = `${username}ちゃんのいいねは ${goodcount.goodcount} こだよ！`;
+    }).spread((grasscount, isCreated) => {
+      const message = `${username}ちゃんのいいねは ${grasscount.grasscount} こだよ！`;
       msg.send(message);
     });
   });
