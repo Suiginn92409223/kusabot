@@ -2,8 +2,8 @@
 const loader = require('./sequelizeLoader');
 const Sequelize = loader.Sequelize;
 
-const Goodcount = loader.database.define(
-  'goodcounts',
+const grasscount = loader.database.define(
+  'grasscounts',
   {
     userId: {
       type: Sequelize.STRING,
@@ -22,7 +22,7 @@ const Goodcount = loader.database.define(
       type: Sequelize.STRING,
       allowNull: true
     },
-    goodcount: {
+    grasscount: {
       type: Sequelize.INTEGER,
       allowNull: false,
       defaultValue: 0
@@ -33,10 +33,10 @@ const Goodcount = loader.database.define(
     timestamps: true,
     indexes: [
       {
-        fields: ['goodcount']
+        fields: ['grasscount']
       }
     ]
   }
 );
 
-module.exports = Goodcount;
+module.exports = grasscount;
