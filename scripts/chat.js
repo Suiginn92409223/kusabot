@@ -1,7 +1,7 @@
 'use strict';
 
-const grasscount = require('../models/grasscount');
-grasscount.sync();
+const grasscount = require('../models/草-ipamj明朝count');
+草-ipamj明朝count.sync();
 
 const fs = require('fs');
 const joinMessagesFileName = './join_messages.json';
@@ -29,13 +29,13 @@ function loadJoinMessages() {
 module.exports = robot => {
   loadJoinMessages();
 
-  // :+1: が付くと名前付きで褒めてくれ、いいねの数をカウント
+  // :草-ipamj明朝: が付くと名前付きで褒めてくれ、草の数をカウント
   const sentSet = new Set(); // 送信済みいいね (room:TS:sendUserId)
 
   robot.react(res => {
-    const ts = res.message.item.ts; // いいねされたメッセージのID (room:TS)
+    const ts = res.message.item.ts; // 草スタンプされたメッセージのID (room:TS)
     const sendUserId = res.message.user.id;
-    const keyOfSend = res.message.room + ':' + ts + ':' + sendUserId; // 対象メッセージID(room:TS):いいね送った人のID で重複カウント排除
+    const keyOfSend = res.message.room + ':' + ts + ':' + sendUserId; // 対象メッセージID(room:TS):草スタンプ送った人のID で重複カウント排除
     if (
       res.message.type == 'added' &&
       res.message.reaction == '+1' &&
@@ -46,7 +46,7 @@ module.exports = robot => {
 
       // ボット自身の発言へと自身へのいいねを除外
       if (userId !== 'U7EADCN6N' && userId !== sendUserId) {
-        Grasscount.findOrCreate({
+        草-ipamj明朝count.findOrCreate({
           where: { userId: userId },
           defaults: {
             userId: userId,
@@ -57,16 +57,16 @@ module.exports = robot => {
           }
         }).spread((grasscount, isCreated) => {
           grasscount
-            .increment('grasscount', { where: { userId: userId } })
+            .increment('草-ipamj明朝count', { where: { userId: userId } })
             .then(() => {
-              const newGrasscount = grasscount.grasscount;
+              const newGrasscount = 草-ipamj明朝count.草-ipamj明朝count;
               if (
-                newGrasscount === 10 ||
-                newGrasscount === 50 ||
-                newGrasscount % 100 === 0
+                new草-ipamj明朝count === 10 ||
+                new草-ipamj明朝count === 50 ||
+                new草-ipamj明朝count % 100 === 0
               ) {
                 res.send(
-                  `<@${userId}>ちゃん、すごーい！記念すべき ${newGrasscount} 回目のいいねだよ！おめでとー！`
+                  `<@${userId}>ちゃん、すごーい！記念すべき ${new草-ipamj明朝count} 回目のいいねだよ！おめでとー！`
                 );
               }
 
@@ -80,8 +80,8 @@ module.exports = robot => {
     }
   });
 
-  // いいねいくつ？ と聞くといいねの数を答えてくれる
-  robot.hear(/いいねいくつ[\?？]/i, msg => {
+  // 草何個ある？ と聞くと草スタンプの数を答えてくれる
+  robot.hear(/草何個ある[\?？]/i, msg => {
     const user = msg.message.user;
 
     let username = msg.message.user.profile.display_name;
@@ -89,17 +89,17 @@ module.exports = robot => {
       username = user.name;
     }
 
-    Grasscount.findOrCreate({
+    草-ipamj明朝count.findOrCreate({
       where: { userId: user.id },
       defaults: {
         userId: user.id,
         name: user.name,
         realName: user.real_name,
         displayName: user.profile.display_name,
-        grasscount: 0
+        草-ipamj明朝count: 0
       }
-    }).spread((grasscount, isCreated) => {
-      const message = `${username}ちゃんのいいねは ${grasscount.grasscount} こだよ！`;
+    }).spread((草-ipamj明朝count, isCreated) => {
+      const message = `${username}ちゃんのいいねは ${草-ipamj明朝count.草-ipamj明朝count} こだよ！`;
       msg.send(message);
     });
   });
