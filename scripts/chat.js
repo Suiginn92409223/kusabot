@@ -55,18 +55,18 @@ module.exports = robot => {
             displayName: user ? user.slack.profile.display_name : '',
             grasscount: 0
           }
-        }).spread((grasscount, isCreated) => {
-          grasscount
+        }).spread((草-ipamj明朝count, isCreated) => {
+          草-ipamj明朝count
             .increment('草-ipamj明朝count', { where: { userId: userId } })
             .then(() => {
-              const newGrasscount = 草-ipamj明朝count.草-ipamj明朝count;
+              const new草-ipamj明朝count = 草-ipamj明朝count.草-ipamj明朝count;
               if (
                 new草-ipamj明朝count === 10 ||
                 new草-ipamj明朝count === 50 ||
                 new草-ipamj明朝count % 100 === 0
               ) {
                 res.send(
-                  `<@${userId}>ちゃん、すごーい！記念すべき ${new草-ipamj明朝count} 回目のいいねだよ！おめでとー！`
+                  `<@${userId}>ちゃん、すごーい！記念すべき ${new草-ipamj明朝count} 回目の草だよ！おもしろーい！`
                 );
               }
 
@@ -80,8 +80,8 @@ module.exports = robot => {
     }
   });
 
-  // 草何個ある？ と聞くと草スタンプの数を答えてくれる
-  robot.hear(/草何個ある[\?？]/i, msg => {
+  // 草いくつ？ と聞くと草スタンプの数を答えてくれる
+  robot.hear(/草いくつ[\?？]/i, msg => {
     const user = msg.message.user;
 
     let username = msg.message.user.profile.display_name;
@@ -99,7 +99,7 @@ module.exports = robot => {
         草-ipamj明朝count: 0
       }
     }).spread((草-ipamj明朝count, isCreated) => {
-      const message = `${username}ちゃんのいいねは ${草-ipamj明朝count.草-ipamj明朝count} こだよ！`;
+      const message = `${username}ちゃんの草は ${草-ipamj明朝count.草-ipamj明朝count} こだよ！`;
       msg.send(message);
     });
   });
