@@ -53,7 +53,7 @@ module.exports = robot => {
             name: user ? user.name : '',
             realName: user ? user.real_name : '',
             displayName: user ? user.slack.profile.display_name : '',
-            grasscount: 0
+            草-ipamj明朝count: 0
           }
         }).spread((草-ipamj明朝count, isCreated) => {
           草-ipamj明朝count
