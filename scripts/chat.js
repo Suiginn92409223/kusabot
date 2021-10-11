@@ -71,7 +71,7 @@ module.exports = robot => {
               }
 
               if (sentSet.size > 100000) {
-                sentSet.clear(); // 10万以上、すごーいしたら一旦クリア
+                sentSet.clear(); // 10万以上、おもしろーいしたら一旦クリア
               }
               sentSet.add(keyOfSend);
             });
