@@ -1,6 +1,6 @@
 'use strict';
 
-const grasscount = require('../models/草-ipamj明朝count');
+const 草-ipamj明朝count = require('../models/草-ipamj明朝count');
 草-ipamj明朝count.sync();
 
 const fs = require('fs');
