@@ -46,7 +46,7 @@ module.exports = robot => {
 
       // ボット自身の発言へと自身へのいいねを除外
       if (userId !== 'U7EADCN6N' && userId !== sendUserId) {
-        Goodcount.findOrCreate({
+        Grasscount.findOrCreate({
           where: { userId: userId },
           defaults: {
             userId: userId,
