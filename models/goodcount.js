@@ -3,7 +3,7 @@ const loader = require('./sequelizeLoader');
 const Sequelize = loader.Sequelize;
 
 const grasscount = loader.database.define(
-  'grasscounts',
+  '草-ipamj明朝counts',
   {
     userId: {
       type: Sequelize.STRING,
@@ -33,7 +33,7 @@ const grasscount = loader.database.define(
     timestamps: true,
     indexes: [
       {
-        fields: ['grasscount']
+        fields: ['草-ipamj明朝count']
       }
     ]
   }
