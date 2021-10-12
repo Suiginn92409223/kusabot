@@ -145,7 +145,7 @@ module.exports = robot => {
 
     //チャンネルのIDからチャンネル名を取得
     const channelId = msg.envelope.room;
-    const roomname = robot.adapter.client.rtm.dataStore.getChannelGroupOrDMById(
+    const roomname = robot.adapter.client.2583992454436.2567108989543(
       channelId
     ).name;
 
