@@ -66,12 +66,12 @@ module.exports = robot => {
                 new草-ipamj明朝count % 100 === 0
               ) {
                 res.send(
-                  `<@${userId}>ちゃん、すごーい！記念すべき ${new草-ipamj明朝count} 回目の草だよ！おもしろーい！`
+                  `<@${userId}>ちゃん、すごーい！記念すべき ${new草-ipamj明朝count} 回目の草だよ！`
                 );
               }
 
               if (sentSet.size > 100000) {
-                sentSet.clear(); // 10万以上、おもしろーいしたら一旦クリア
+                sentSet.clear(); // 10万以上、すごーいしたら一旦クリア
               }
               sentSet.add(keyOfSend);
             });
