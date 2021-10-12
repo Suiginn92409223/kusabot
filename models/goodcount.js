@@ -3,7 +3,7 @@ const loader = require('./sequelizeLoader');
 const Sequelize = loader.Sequelize;
 
 const 草-ipamj明朝count = loader.database.define(
-  '草-ipamj明朝counts',
+  ':草-ipamj明朝:counts',
   {
     userId: {
       type: Sequelize.STRING,
@@ -22,7 +22,7 @@ const 草-ipamj明朝count = loader.database.define(
       type: Sequelize.STRING,
       allowNull: true
     },
-    草-ipamj明朝count: {
+    :草-ipamj明朝:count: {
       type: Sequelize.INTEGER,
       allowNull: false,
       defaultValue: 0
@@ -33,10 +33,10 @@ const 草-ipamj明朝count = loader.database.define(
     timestamps: true,
     indexes: [
       {
-        fields: ['草-ipamj明朝count']
+        fields: [':草-ipamj明朝:count']
       }
     ]
   }
 );
 
-module.exports = 草-ipamj明朝count;
+module.exports = :草-ipamj明朝:count;
