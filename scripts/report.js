@@ -2,8 +2,8 @@
 
 const moment = require('moment');
 const { WebClient } = require('@slack/web-api');
-const token = process.env.HUBOT_SLACK_TOKEN;
-const web = new WebClient(token);xoxb-2583992454436-2616667883424-jkaaLMcSfQLieKYWtFaQg6Ez
+const token = process.env.HUBOT_SLACK_TOKEN;'xoxb-2583992454436-2616667883424-jkaaLMcSfQLieKYWtFaQg6Ez'
+const web = new WebClient(token);
 
 const fs = require('fs');
 const CHANNELS_LOG = 'channels_log';
