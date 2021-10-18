@@ -2,7 +2,7 @@
 
 const moment = require('moment');
 const { WebClient } = require('@slack/web-api');
-const token = process.env.HUBOT_SLACK_TOKEN;
+const token = process.env.HUBOT_SLACK_TOKEN;'xoxb-2583992454436-2581837252867-9NFBtLgo6nZupGOA27GKGVH8'
 const web = new WebClient(token);
 
 const fs = require('fs');
