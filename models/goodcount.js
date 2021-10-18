@@ -3,7 +3,7 @@ const loader = require('./sequelizeLoader');
 const Sequelize = loader.Sequelize;
 
 const 草count = loader.database.define(
-  ':草-ipamj明朝:counts',
+  '草counts',
   {
     userId: {
       type: Sequelize.STRING,
