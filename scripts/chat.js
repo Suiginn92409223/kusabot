@@ -1,7 +1,7 @@
 'use strict';
 
-const 草-ipamj明朝count = require('../models/草-ipamj明朝count');
-草-ipamj明朝count.sync();
+const 草count = require('../models/草count');
+草count.sync();
 
 const fs = require('fs');
 const joinMessagesFileName = './join_messages.json';
@@ -38,7 +38,7 @@ module.exports = robot => {
     const keyOfSend = res.message.room + ':' + ts + ':' + sendUserId; // 対象メッセージID(room:TS):草スタンプ送った人のID で重複カウント排除
     if (
       res.message.type == 'added' &&
-      res.message.reaction == '草-ipamj明朝' &&
+      res.message.reaction == '草' &&
       !sentSet.has(keyOfSend) // その人が過去送ったことがなければインクリメント
     ) {
       const userId = res.message.item_user.id;
@@ -46,27 +46,27 @@ module.exports = robot => {
 
       // ボット自身の発言へと自身へのいいねを除外
       if (userId !== 'U7EADCN6N' && userId !== sendUserId) {
-        草-ipamj明朝count.findOrCreate({
+        草count.findOrCreate({
           where: { userId: userId },
           defaults: {
             userId: userId,
             name: user ? user.name : '',
             realName: user ? user.real_name : '',
             displayName: user ? user.slack.profile.display_name : '',
-            草-ipamj明朝count: 0
+            草count: 0
           }
-        }).spread((草-ipamj明朝count, isCreated) => {
-          草-ipamj明朝count
-            .increment('草-ipamj明朝count', { where: { userId: userId } })
+        }).spread((草count, isCreated) => {
+          草count
+            .increment('草count', { where: { userId: userId } })
             .then(() => {
-              const new草-ipamj明朝count = 草-ipamj明朝count.草-ipamj明朝count;
+              const new草count = 草count.草count;
               if (
-                new草-ipamj明朝count === 10 ||
-                new草-ipamj明朝count === 50 ||
-                new草-ipamj明朝count % 100 === 0
+                new草count === 10 ||
+                new草count === 50 ||
+                new草count % 100 === 0
               ) {
                 res.send(
-                  `<@${userId}>ちゃん、すごーい！記念すべき ${new草-ipamj明朝count} 回目の草だよ！`
+                  `<@${userId}>ちゃん、すごーい！記念すべき ${new草count} 回目の草だよ！`
                 );
               }
 
@@ -89,17 +89,17 @@ module.exports = robot => {
       username = user.name;
     }
 
-    草-ipamj明朝count.findOrCreate({
+    草count.findOrCreate({
       where: { userId: user.id },
       defaults: {
         userId: user.id,
         name: user.name,
         realName: user.real_name,
         displayName: user.profile.display_name,
-        草-ipamj明朝count: 0
+        草count: 0
       }
-    }).spread((草-ipamj明朝count, isCreated) => {
-      const message = `${username}ちゃんの草は ${草-ipamj明朝count.草-ipamj明朝count} こだよ！`;
+    }).spread((草count, isCreated) => {
+      const message = `${username}ちゃんの草は ${草count.草count} こだよ！`;
       msg.send(message);
     });
   });
