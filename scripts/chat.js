@@ -1,7 +1,7 @@
 'use strict';
 
-const 草count = require('../models/草count');
-草count.sync();
+const goodcount = require('../models/goodcount');
+goodcount.sync();
 
 const fs = require('fs');
 const joinMessagesFileName = './join_messages.json';
@@ -46,27 +46,27 @@ module.exports = robot => {
 
       // ボット自身の発言へと自身へのいいねを除外
       if (userId !== 'U7EADCN6N' && userId !== sendUserId) {
-        草count.findOrCreate({
+        goodcount.findOrCreate({
           where: { userId: userId },
           defaults: {
             userId: userId,
             name: user ? user.name : '',
             realName: user ? user.real_name : '',
             displayName: user ? user.slack.profile.display_name : '',
-            草count: 0
+            goodcount: 0
           }
-        }).spread((草count, isCreated) => {
-          草count
-            .increment('草count', { where: { userId: userId } })
+        }).spread((goodcount, isCreated) => {
+          goodcount
+            .increment('goodcount', { where: { userId: userId } })
             .then(() => {
-              const new草count = 草count.草count;
+              const new草count = goodcount.草count;
               if (
-                new草count === 10 ||
-                new草count === 50 ||
-                new草count % 100 === 0
+                newGoodcount === 10 ||
+                newGoodcount === 50 ||
+                newGoodcount % 100 === 0
               ) {
                 res.send(
-                  `<@${userId}>ちゃん、すごーい！記念すべき ${new草count} 回目の草だよ！`
+                  `<@${userId}>ちゃん、すごーい！記念すべき ${newgoodcount} 回目の草だよ！`
                 );
               }
 
@@ -89,17 +89,17 @@ module.exports = robot => {
       username = user.name;
     }
 
-    草count.findOrCreate({
+    goodcount.findOrCreate({
       where: { userId: user.id },
       defaults: {
         userId: user.id,
         name: user.name,
         realName: user.real_name,
         displayName: user.profile.display_name,
-        草count: 0
+        goodcount: 0
       }
-    }).spread((草count, isCreated) => {
-      const message = `${username}ちゃんの草は ${草count.草count} こだよ！`;
+    }).spread((goodcount, isCreated) => {
+      const message = `${username}ちゃんの草は ${goodcount.goodcount} こだよ！`;
       msg.send(message);
     });
   });
