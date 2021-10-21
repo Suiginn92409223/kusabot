@@ -2,8 +2,8 @@
 const loader = require('./sequelizeLoader');
 const Sequelize = loader.Sequelize;
 
-const 草count = loader.database.define(
-  '草counts',
+const goodcount = loader.database.define(
+  'goodcounts',
   {
     userId: {
       type: Sequelize.STRING,
@@ -22,7 +22,7 @@ const 草count = loader.database.define(
       type: Sequelize.STRING,
       allowNull: true
     },
-    草count: {
+    goodcount: {
       type: Sequelize.INTEGER,
       allowNull: false,
       defaultValue: 0
@@ -33,10 +33,10 @@ const 草count = loader.database.define(
     timestamps: true,
     indexes: [
       {
-        fields: ['草-ipamj明朝count']
+        fields: ['goodcount']
       }
     ]
   }
 );
 
-module.exports = :草count;
+module.exports = :goodcount;
