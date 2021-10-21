@@ -38,7 +38,7 @@ module.exports = robot => {
     const keyOfSend = res.message.room + ':' + ts + ':' + sendUserId; // 対象メッセージID(room:TS):草スタンプ送った人のID で重複カウント排除
     if (
       res.message.type == 'added' &&
-      res.message.reaction == '草' &&
+      res.message.reaction == '草-ipamj明朝' &&
       !sentSet.has(keyOfSend) // その人が過去送ったことがなければインクリメント
     ) {
       const userId = res.message.item_user.id;
